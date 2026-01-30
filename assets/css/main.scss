@@ -1,28 +1,15 @@
 // -------------- THEME SWITCHER -------------- //
-@mixin theme($--bg-color, $--primary-text-color, $--secondary-text-color, $--link-color, $--visited-link-color, $--highlight) {
+@mixin theme($--bg-color, $--primary-text-color, $--secondary-text-color, $--link-color, $--visited-link-color) {
   background-color: $--bg-color;
 
   color: $--primary-text-color;
 
   a {
     color: $--link-color;
+    text-decoration: none;
+
     &:visited { color: $--visited-link-color; }
-  }
-
-  details {
-    border: thin solid $--primary-text-color;
-  }
-
-  details summary {
-    color: $--primary-text-color;
-  }
-
-  details[open] summary {
-    border-bottom: 1px solid $--primary-text-color;
-  }
-
-  pre {
-    background: $--bg-color;
+    &:hover { text-decoration: underline; }
   }
 
   code:not(pre > code) {
@@ -30,13 +17,26 @@
     color: $--bg-color;
   }
 
-  *:target {
-    background: $--highlight;
-    color: $--primary-text-color;
-   }
+  figcaption { color: $--secondary-text-color; }
 
-  table, th, td {
+  blockquote {
+    font-style: italic;
     border: thin solid $--primary-text-color;
+    padding: 1rem;
+
+    p { margin: 0; }
+  }
+
+  pre {
+    background: $--bg-color;
+    padding: 1em;
+    overflow-x: auto; /* Fix pre content overflowing parent without scroll bar */
+    white-space:pre-wrap;
+  }
+
+  summary {
+	color: $--secondary-text-color; 
+	cursor: pointer;
   }
 
   .toc {
@@ -44,23 +44,31 @@
     padding: 1rem;
   }
 
-  figcaption { color: $--secondary-text-color; }
-
-  blockquote {
-    border: thin solid $--primary-text-color;
+  .theme {
+     fill: $--primary-text-color;
   }
+
+    *:target { background: $--secondary-text-color; }
+
+	#imageSearch {
+	  background: $--bg-color;
+	  color: $--primary-text-color;
+	}
+
+
 }
 
 @mixin dark-appearance {
-  @include theme(#000000, #ffffff, #000000, #79a8ff, #f78fe7, #2f3849); // modus-vivendi
+  @include theme(#000000, #ffffff, #000000, #79a8ff, #f78fe7); // modus-vivendi
 }
 
 @mixin light-appearance {
-  @include theme(#ffffff, #000000, #595959, #3548cf, #8f0075, #dae5ec); // modus-operandi
+  @include theme(#ffffff, #000000, #595959, #3548cf, #8f0075); // modus-operandi
 }
 
 body[a="dark"] { @include dark-appearance; }
 body[a="light"] { @include light-appearance; }
+
 
 @media (prefers-color-scheme: dark) {
   body[a="auto"] { @include dark-appearance; }
@@ -77,49 +85,45 @@ html { height: 100%; }
 body {
   font-family: monospace;
   font-size: 16px;
-  line-height: 1.4;
+  line-height: 1.48;
   margin: 0;
   min-height: 100%;
   overflow-wrap: break-word;
 }
 
-h2, h3, h4, h5, h6 { margin-top: 1.5rem; }
+.post-meta { text-align: right; }
 
-p { margin: 1rem 0; }
+h2, h3, h4, h5, h6 { margin-top: 3rem; }
+
+hr { margin: 2rem 0; }
+
+p { margin: 2rem 0; }
 
 li { margin: 0.4rem 0; }
 
-a {
-  text-decoration: none;
-  &:hover { text-decoration: underline; }
+
+
+.w {
+  max-width: 1050px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
 }
+
 
 hr {
   text-align: center;
-  border: 0;
-  margin: 2rem 0;
 
-  &:before { content: '/////' }
-  &:after { content: attr(data-content) '/////' }
-}
+  border: 1;
 
-pre {
-  padding: 1em;
-  overflow-x: auto; /* Fix pre content overflowing parent without scroll bar */
-}
+  }
+
 
 table { width: 100%; }
 
 table, th, td {
+  border: thin solid black;
   border-collapse: collapse;
   padding: 0.4rem;
-}
-
-code {
-  text-size-adjust: 100%;
-  -ms-text-size-adjust: 100%;
-  -moz-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
 }
 
 code:not(pre > code) {
@@ -134,12 +138,6 @@ code.has-jax {
   font-size: 100%;
 }
 
-blockquote {
-  padding: 1rem;
-
-  p { margin: 0; }
-}
-
 img {
   max-width: 100%;
   display: block;
@@ -149,33 +147,4 @@ img {
 figcaption {
   text-align: center;
   opacity: 0.5;
-}
-
-details {
-  padding: 1rem;
-}
-
-details summary {
-  text-decoration: none;
-}
-
-details[open] summary {
-  margin-bottom: 0.5em;
-  padding-bottom: 0.5em;
-}
-
-.post-meta {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.w {
-  max-width: 640px;
-  margin: 0 auto;
-  padding: 4rem 2rem;
-}
-
-.toc {
-  padding: 1rem;
 }
