@@ -1,0 +1,19 @@
+[[buttons]]
+url = "https://512kb.club"
+image = "images/512kb.gif"
+alt = "a proud member of the green team of 512KB club"
+
+[[buttons]]
+url = "https://stackoverflow.com/questions/11828270/how-do-i-exit-vim"
+image = "images/vim_love.gif"
+alt = "edited with VIM !"
+
+[[buttons]]
+url = "https://endeavouros.com/"
+image = "images/endeavouros.png"
+alt = "powered by endeavourOS !"
+
+[[buttons]]
+url = "https://themes.gohugo.io/themes/hugo-theme-nostyleplease/"
+image = "images/hugo.png"
+alt = "powered by hugo !"

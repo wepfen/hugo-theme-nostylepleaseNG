@@ -1,5 +1,6 @@
 <ul>
     {{- range $item := .collection -}}
+    
         <li>
             {{- with $item.url -}}
                 <a href="{{ $item.url | relURL }}">{{ safeHTML $item.title }}</a>

@@ -1,0 +1,11 @@
+<ul style="display: flex; list-style-type:none; justify-content: center; gap: 10px;">
+    TEST1 
+    {{- range $item := .collection -}}
+        <li>
+            TEST2
+            <a href="{{ $item.url }}" target="_blank">
+                <img src="{{ $item.image | relURL }}" width="88" height="31" alt="{{ $item.alt }}">
+            </a>
+        </li>
+    {{ end }}
+</ul>

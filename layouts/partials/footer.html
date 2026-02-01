@@ -1,4 +1,4 @@
-{{ if site.Params.theme_config.isShowFooter }}
+{{ if site.Params.theme_config.showFooter }}
     {{ $footerContent := readFile "layouts/footer.md" }}
     {{ if and $footerContent (ne $footerContent "") }}
         {{ $footerContent | markdownify }}
@@ -8,4 +8,22 @@
             <p>&copy; {{ now.Format "2006" }} {{ site.Title }}</p>
         </footer>
     {{ end }}
+
+    {{ if site.Params.theme_config.showFooterButtons }}
+        <br>
+        <hr>
+
+        <ul style="display: flex; list-style-type:none; justify-content: center; gap: 10px; ">
+            <li><a href="https://512kb.club" target=_blank><img src="../../../images/512kb.gif" width="88" height="31" alt="a proud member of the green team of 512KB club" /> </a>
+            <li><a href="https://stackoverflow.com/questions/11828270/how-do-i-exit-vim" target=_blank><img src="../../../images/vim_love.gif" width="88" height="31" alt="edited with VIM !" /></a>
+            <li><a href="https://endeavouros.com/" target=_blank><img src="../../../images/endeavouros.png" width="88" height="31" alt="powered by endeavourOS !" /></a>
+            <li><a href="https://themes.gohugo.io/themes/hugo-theme-nostyleplease/" target=_blank><img src="../../../images/hugo.png" width="88" height="31" alt="powered by hugo !" /></a>
+        </ul>
+    {{ end }}
+
+    {{ if site.Params.theme_config.showFooterButtons }}
+        <hr>
+        {{ partial "buttons.html" (dict "collection" $.Site.Data.buttons) }}
+    {{ end }}
+
 {{ end }}
